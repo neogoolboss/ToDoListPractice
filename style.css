@@ -1,0 +1,85 @@
+.textStyle {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.textStyle.checked {
+    text-decoration: line-through;
+}
+
+.xButton {
+    background-color: red;
+    color: white;
+    border: none;
+    /* padding: 5px, 10px */
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.addButton{
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.listStyle {
+    display: 'flex';
+    flex-direction: column;
+    margin-left: 5%;
+    margin-top: 5%;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.navStyle {
+    width: auto;
+    height: 10vh;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.middleStyle {
+    background-color: lightgray;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items : center;
+    flex-direction: column;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 70px;
+}
+
+.middleInStyle {
+    background-color: white;
+    height: 60vh;
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin: auto;
+    line-height: normal;
+
+}
+
+.footerStyle {
+    background-color: black;
+    width: auto;
+    height: 5vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputAndButton {
+    /* display: flex; */
+    margin-top: -2%;
+    margin-bottom: -1% 
+}

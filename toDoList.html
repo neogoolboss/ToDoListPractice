@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const {useState} = React;
+
+        function TodoList() {
+
+            const [toDos, setToDos] = useState(
+                [
+                    {id: 1, toDo:'할일 목록을 추가할 것'}
+                ]
+            );
+
+            const [isChecked, setIsChecked] = useState(false);
+
+            const [inputText, setInputText] = useState('');
+
+            const [nextId, setNextId] = useState(2);
+
+            const onChangeHandler = e => setInputText(e.target.value);
+
+            const onClickHandler = () => {
+                
+                // const changeToDoList = toDos.concat({
+                //     id: nextId,
+                //     toDo: inputText,
+                // });
+
+                // setNextId(nextId + 1);
+                // setToDos(changeToDoList);
+                // setInputText('');
+
+                const newToDo ={
+                    id: nextId,
+                    toDo: inputText,
+                    checked: false
+                };
+                setNextId(nextId +1);
+                setToDos(prevToDos => [...prevToDos, newToDo]);
+                setInputText('');
+
+            }
+
+            const onRemove = id => {
+                const changeToDoList = toDos.filter(toDo => toDo.id !== id);
+                setToDos(changeToDoList);
+            }
+
+            const onCheckedHandler = id => {
+                // const changeChecked = toDos.map(toDo => {
+                //     if(todo.id === id) {
+                //         return {...todo, checked: !todo.checked};
+                //     }
+                //     return todo;
+                // });
+                // setToDos(changeChecked)
+                setToDos(prevToDos =>
+                            prevToDos.map(toDo =>
+                                toDo.id === id ? { ...toDo, checked: !toDo.checked } : toDo));
+            } 
+
+            const toDoList = toDos.map(toDo => 
+                                        <div key={toDo.id} className='listStyle'>
+                                            <input
+                                                type='checkbox'
+                                                checked={toDo.checked}
+                                                onChange={() => onCheckedHandler(toDo.id)}
+                                            />
+                                            <span className={toDo.checked ? 'textStyle checked' : 'textStyle'}>{toDo.toDo}</span>
+                                            <button className='xButton' onClick={() => onRemove(toDo.id)}>x</button>
+                                        </div>
+                                        );
+
+            let today = new Date();
+            today = today.getFullYear() + '. ' + (today.getMonth() + 1) + '. ' + today.getDate() + '.';
+
+            return ( 
+                <>  
+                    <div className='navStyle'>오늘의 할 일! {today}</div>
+                    <div className='middleStyle'>ToDo-List
+                        <div className='middleInStyle'>
+                            <div>{toDoList}</div>
+                            
+                        </div>
+                        <div className='inputAndButton'>
+                        <input value={inputText} onChange={onChangeHandler}/>
+                        <button className='addButton' onClick={onClickHandler}>추가하기</button> 
+                        </div>
+                    </div>
+                    <div className='footerStyle'> 실습 개 어렵지만 재밌을지도...?
+                    </div>
+                    
+                    
+                    
+                </>
+                )
+
+
+
+        }
+
+
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<TodoList/>);
+    </script>
+</body>
+</html>
