@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="toDostyle2.css">
+</head>
+</head>
+<body>
+    
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const { useState } = React; 
+
+        function App() {
+
+            const [inputValue, setInputValue] = useState('');
+
+            const [todoList, setTodoList] = useState([]);
+
+            const addItem = () => {
+                console.log('im herererer', inputValue)
+                setTodoList([...todoList, inputValue])
+            }
+
+            function TodoBoard(props) {
+
+                // console.log('todoBoard', props.todoList);
+                return (
+                    <div>
+                        <h1>Todo List</h1>
+                        {props.todoList.map((item) => <TodoItem item = {item} /> )}
+                    </div>
+                );
+            }
+
+            function TodoItem(props) {
+                return (
+                    <div className='todo-item'>
+                        {props.item}
+                    </div>
+                
+                );
+            }
+
+
+
+
+
+            return (
+                <>
+                <input value={inputValue} type='text' onChange={(e) => setInputValue(e.target.value)}/>
+                <button onClick={addItem}>추가</button>
+
+                <TodoBoard todoList={todoList}/>
+                
+
+
+
+
+                </>
+            )
+        }
+
+
+
+
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    </script>
+
+</body>
+</html>
